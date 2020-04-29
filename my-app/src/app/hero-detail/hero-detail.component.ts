@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {Hero} from "../hero";
+import {Hero} from '../hero';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -21,12 +21,12 @@ export class HeroDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHero()
+    this.getHero();
   }
 
-  //route parameters are always strings
-  //the '+' sign converts a string to a number
-  getHero():void{
+  // route parameters are always strings
+  // the '+' sign converts a string to a number
+  getHero(): void{
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id).subscribe(hero => this.hero = hero);
   }

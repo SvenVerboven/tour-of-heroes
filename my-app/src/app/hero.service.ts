@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Hero} from "./hero";
-import {Observable, of} from "rxjs";
-import {MessageService} from "./message.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, tap} from "rxjs/operators";
+import {Hero} from './hero';
+import {Observable, of} from 'rxjs';
+import {MessageService} from './message.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,18 +22,18 @@ export class HeroService {
   ) {
   }
 
-  //getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable, using the RxJS of() function.
-  //You'll be able to re-implement getHero() as a real Http request without having to change the HeroDetailComponent that calls it.
+  // getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable, using the RxJS of() function.
+  // You'll be able to re-implement getHero() as a real Http request without having to change the HeroDetailComponent that calls it.
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<Hero[]>('getHeroes',[])));
+        catchError(this.handleError<Hero[]>('getHeroes', [])));
   }
 
-  //getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable, using the RxJS of() function.
-  //You'll be able to re-implement getHero() as a real Http request without having to change the HeroDetailComponent that calls it.
+  // getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable, using the RxJS of() function.
+  // You'll be able to re-implement getHero() as a real Http request without having to change the HeroDetailComponent that calls it.
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
