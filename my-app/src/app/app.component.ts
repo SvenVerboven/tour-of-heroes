@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {fromEvent} from 'rxjs';
+import {fromEvent, Observable} from 'rxjs';
 import {map, mergeMapTo, takeUntil} from 'rxjs/operators';
 
 @Component({
@@ -10,17 +10,12 @@ import {map, mergeMapTo, takeUntil} from 'rxjs/operators';
 export class AppComponent implements OnInit {
 
   title = 'Tour of Heroes';
+  pointerPosition$: Observable<{x,y}>;
 
   ngOnInit(): void {
-    const mouseDrag$ = fromEvent<MouseEvent>(document, 'mousedown').pipe(
-      mergeMapTo(
-        fromEvent<MouseEvent>(document, 'mousemove')
-          .pipe(takeUntil(fromEvent<MouseEvent>(document, 'mouseup'))
-          )
-      )
-    ).pipe(
-      map(mouseEvent => `Position = ${mouseEvent.clientX} on the X axis and ${mouseEvent.clientY} on the Y axis`))
-      .subscribe(result => console.log(result));
-
+    this.pointerPosition$ = fromEvent<MouseEvent>(document, 'mousedown').pipe(
+      mergeMapTo(fromEvent<MouseEvent>(document, 'mousemove')
+        .pipe(takeUntil(fromEvent<MouseEvent>(document, 'mouseup')))),
+        map(mouseEvent => ({x: mouseEvent.clientX, y: mouseEvent.clientY})));
   }
 }

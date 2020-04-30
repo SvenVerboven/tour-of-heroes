@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DashboardComponent} from './dashboard.component';
-import {RouterTestingModule} from '@angular/router/testing';
 
 xdescribe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -9,7 +8,6 @@ xdescribe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
       declarations: [DashboardComponent]
     })
       .compileComponents();
